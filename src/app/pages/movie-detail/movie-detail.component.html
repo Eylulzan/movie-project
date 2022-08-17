@@ -1,0 +1,43 @@
+<div
+  class="hero d-flex flex-column justify-content-space position-relative"
+  *ngIf="!loading"
+>
+  <div class="backdrop position-absolute top-0 end-0 d-block">
+    <img
+      class="image"
+      src="https://image.tmdb.org/t/p/original/{{ movie?.backdrop_path }}"
+    />
+  </div>
+  <div
+    class="px-5 position-absolute top-0 start-0 d-flex align-items-center w-50 h-100"
+  >
+    <youtube-player [videoId]="video.key"></youtube-player>
+  </div>
+</div>
+<div class="listing-space">
+  <h1 class="text-light m-3">Oyuncu Kadrosu</h1>
+
+  <p-carousel
+    [value]="casts"
+    [numVisible]="6"
+    [numScroll]="4"
+    [circular]="false"
+  >
+    <ng-template let-cast pTemplate="item">
+      <div class="listing-item-style">
+        <img
+          *ngIf="cast.profile_path"
+          src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
+            cast.profile_path
+          }}"
+        />
+        <img
+          height="330px"
+          *ngIf="!cast.profile_path"
+          src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
+        />
+        <h6 class="text-light">{{ cast.name }}</h6>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

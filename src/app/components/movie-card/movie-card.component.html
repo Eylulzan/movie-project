@@ -1,0 +1,30 @@
+<div class="position-relative">
+  <img
+    src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
+      movie.poster_path
+    }}"
+    class="card-img-top rounded"
+  />
+  <div class="position-absolute top-0 start-0 py-2 px-3" *ngIf="isUserAuth">
+    <i class="btn btn-sm border border-0 bi bi-heart text-danger fs-5"></i>
+  </div>
+  <div class="position-absolute top-0 end-0 p-2">
+    <span class="badge text-bg-warning mx-1"
+      ><i class="bi bi-star-fill me-1"></i>{{ movie.vote_average }}</span
+    >
+  </div>
+  <div
+    class="play-btn shadow position-absolute top-100 start-50 translate-middle rounded-circle bg-danger d-flex align-items-center justify-content-center"
+    style="width: 40px; height: 40px"
+  >
+    <a class="fs-4" routerLink="/movie/{{ movie.id }}">
+      <i class="bi bi-play text-white"></i>
+    </a>
+  </div>
+</div>
+
+<div class="card-body">
+  <div class="py-1">
+    <h5 class="card-title mt-4 mb-2 fw-bold">{{ movie.title }}</h5>
+  </div>
+</div>

@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;500;700&display=swap');
+
+body, html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Mulish', sans-serif;
+}
+
+.hero {
+  height: 35rem;
+  color: #999;
+  background-color: #000;
+  display: block;
+  padding-bottom: 40%;
+}
+.backdrop {
+  width: 71.1%;
+  height: 100%;
+}
+
+.backdrop::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  content: "";
+  background-image: linear-gradient(to right,
+      #000 0,
+      transparent 50%,
+      transparent 100%);
+}
+
+.backdrop>div {
+  width: 100%;
+  display: inline;
+}
+
+.image {
+  display: inline-block;
+  max-width: none;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.listing-item-style {
+  background-color: #212121;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin: 11px 5px 11px;
+  position: relative;
+  cursor: pointer;
+}
+
+.listing-item-style:focus {
+  outline-style: none;
+}
+
+.listing-item-style img {
+  width: 100%;
+  transition: all 0.5s ease-out;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.listing-item-style h6 {
+  font-size: 16px;
+  overflow: hidden;
+  margin: 5px 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 2px 2px;
+  width: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.p-carousel .p-carousel-indicators {
+  display: none !important;
+}

@@ -1,0 +1,31 @@
+<div class="container text-center" *ngIf="!loading; else loaderTemplate">
+  <div class="mt-3">
+    <h3 class="fw-light">Popüler Filmler</h3>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div
+      class="border border-1 rounded col-md-3 m-4 p-1"
+      *ngFor="
+        let popularMovie of popularMovies
+          | paginate: { itemsPerPage: 10, currentPage: currentPage }
+      "
+    >
+      <app-movie-card [movie]="popularMovie"></app-movie-card>
+    </div>
+    <pagination-controls
+      class="p-0 m-0"
+      (pageChange)="currentPage = $event"
+      previousLabel="Geri"
+      nextLabel="İleri"
+    ></pagination-controls>
+  </div>
+</div>
+
+<ng-template #loaderTemplate>
+  <div
+    class="w-full h-50 d-flex flex-column justify-content-center align-items-center"
+  >
+    <p-progressSpinner></p-progressSpinner
+    ><span class="mt-3 text-muted">Filmler Yükleniyor...</span>
+  </div>
+</ng-template>

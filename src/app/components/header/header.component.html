@@ -1,0 +1,38 @@
+<header
+  class="d-flex flex-wrap align-items-center justify-content-center justify-content-around py-3 border-bottom"
+>
+  <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0">
+    <a href="/" class="text-dark text-decoration-none"> Movie </a>
+  </div>
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li *ngFor="let path of paths">
+      <app-header-link [name]="path.name" [path]="path.path"></app-header-link>
+    </li>
+  </ul>
+
+  <div class="col-md-3 text-end" *ngIf="!user; else userHeader">
+    <button
+      type="button"
+      class="btn btn-outline-primary me-2"
+      routerLink="/login"
+    >
+      Login
+    </button>
+    <button type="button" class="btn btn-primary" routerLink="/signup">
+      Sign-up
+    </button>
+  </div>
+  <ng-template #userHeader>
+    <div class="col-md-3 text-end">
+      <span class="me-2">Hoşgeldiniz, {{ user.email }}</span>
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-danger"
+        (click)="logout()"
+      >
+        Çıkış yap
+      </button>
+    </div>
+  </ng-template>
+</header>
