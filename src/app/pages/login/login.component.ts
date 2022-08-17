@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
   async getUsers() {
     this.users = await this.userService.getUsers();
-    console.log(this.users);
   }
 
   login() {
@@ -57,7 +56,6 @@ export class LoginComponent implements OnInit {
         this.route.navigate(["/home"]);
         localStorage.setItem("user", JSON.stringify(formUser));
       } else {
-        console.log("başarısız");
       }
     }
   }

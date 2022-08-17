@@ -36,7 +36,6 @@ export class SignupComponent implements OnInit {
         await this.userService.addUser(request);
         alert("başarılı");
       } catch (error) {
-        console.log(error);
         alert(error);
       }
       this.signupForm.reset();

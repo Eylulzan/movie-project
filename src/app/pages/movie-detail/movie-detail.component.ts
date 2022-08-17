@@ -52,7 +52,6 @@ export class MovieDetailComponent implements OnInit {
           this.video = response.results.filter(
             (video) => video.type === "Trailer"
           )[0];
-          console.warn(this.video);
           this.loading = false;
         }
       });
