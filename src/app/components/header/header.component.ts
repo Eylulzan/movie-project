@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   paths = [
     { path: "home", name: "Anasayfa", isActive: false },
     { path: "movies", name: "En İyi Filmler", isActive: false },
+    { path: "favorite-movies", name: "Favori Filmler", isActive: false },
   ];
   constructor(private route: Router) {}
 
