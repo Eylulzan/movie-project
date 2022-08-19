@@ -1,20 +1,28 @@
 <header
-  class="d-flex flex-wrap align-items-center justify-content-center justify-content-around py-3 border-bottom"
+  class="d-flex flex-wrap align-items-center justify-content-center justify-content-around py-3 border-bottom bg-dark"
 >
-  <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0">
-    <a href="/" class="text-dark text-decoration-none"> Movie </a>
-  </div>
 
-  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+  <div class="d-flex align-items-center col-md-3">
+  
+    <i class="bi bi-camera-reels-fill bi-spin text-white fs-4"></i>
+  
+    
+    <div class="mx-2 fw-bold fs-3">
+    <a href="/" class="text-light text-decoration-none"> EylülFilm </a>
+  </div>
+  </div>
+  
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center "   >
     <li *ngFor="let path of paths">
       <app-header-link [name]="path.name" [path]="path.path"></app-header-link>
     </li>
   </ul>
 
-  <div class="col-md-3 text-end" *ngIf="!user; else userHeader">
+
+  <div class="col-md-3 text-end text-light" *ngIf="!user; else userHeader">
     <button
       type="button"
-      class="btn btn-outline-primary me-2"
+      class="btn btn-primary me-2"
       routerLink="/login"
     >
       Login
@@ -24,11 +32,11 @@
     </button>
   </div>
   <ng-template #userHeader>
-    <div class="col-md-3 text-end">
+    <div class="col-md-3 text-end text-light ">
       <span class="me-2">Hoşgeldiniz, {{ user.email }}</span>
       <button
         type="button"
-        class="btn btn-sm btn-outline-danger"
+        class="btn btn-sm btn-primary"
         (click)="logout()"
       >
         Çıkış yap

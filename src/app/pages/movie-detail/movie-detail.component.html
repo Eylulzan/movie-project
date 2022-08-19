@@ -14,8 +14,63 @@
     <youtube-player [videoId]="video.key"></youtube-player>
   </div>
 </div>
-<div class="listing-space">
-  <h1 class="text-light m-3">Oyuncu Kadrosu</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        class="rounded"
+        src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
+          movie.poster_path
+        }}"
+        width="90%"
+      />
+    </div>
+    <div class="col-md-8">
+      <h3 class="m-0 fw-bold">{{ movie.title }}</h3>
+      <span class="text-muted fst-italic fw-light">{{ movie.tagline }}</span>
+
+      <p class="fw-light pt-2">{{ movie.overview }}</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item border border-0" *ngIf="movie.genres.length">
+          <span class="fw-light me-2">Tür:</span>
+          <span
+            *ngFor="let genre of movie.genres"
+            class="badge text-bg-success mx-1"
+            >{{ genre.name }}</span
+          >
+        </li>
+        <li class="list-group-item border border-0">
+          <span class="fw-light">Süre: </span> {{ movie.runtime }} dk.
+        </li>
+        <li class="list-group-item border border-0">
+          <span class="fw-light">Çıkış Tarihi:</span>
+          {{ movie.release_date | date: "MMMM d, y" }}
+        </li>
+        <li class="list-group-item border border-0" *ngIf="movie.budget">
+          <span class="fw-light">Bütçe:</span>
+          {{ movie.budget | currency: "USD" }}
+        </li>
+        <li class="list-group-item border border-0" *ngIf="movie.revenue">
+          <span class="fw-light">Gelir:</span>
+          {{ movie.revenue | currency: "USD" }}
+        </li>
+        <li class="list-group-item border border-0" *ngIf="movie.vote_average">
+          <span class="fw-light me-2">Oy:</span>
+          <span class="badge text-bg-warning mx-1"
+            ><i class="bi bi-star-fill me-1"></i
+            >{{ movie.vote_average.toString() | slice: 0:3 }}</span
+          >
+        </li>
+        <li class="list-group-item border border-0" *ngIf="movie.vote_count">
+          <span class="fw-light">Oy Sayısı:</span>
+          {{ movie.vote_count }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="mt-5">
+  <h3 class="fw-light text-center">Oyuncu Kadrosu</h3>
 
   <p-carousel
     [value]="casts"
@@ -32,11 +87,11 @@
           }}"
         />
         <img
-          height="330px"
+          height="310px"
           *ngIf="!cast.profile_path"
           src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg"
         />
-        <h6 class="text-light">{{ cast.name }}</h6>
+        <h6 class="text-light text-center">{{ cast.name }}</h6>
       </div>
     </ng-template>
   </p-carousel>

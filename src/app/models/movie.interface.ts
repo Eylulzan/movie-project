@@ -20,4 +20,6 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   name: string;
+  genres: any;
 }
+

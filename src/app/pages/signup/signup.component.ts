@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { User } from "../../models/user.interface";
 import { UserService } from "../../services/user.service";
 
@@ -10,9 +12,11 @@ import { UserService } from "../../services/user.service";
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  user: any;
   constructor(
+    private route: Router,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService, private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +38,8 @@ export class SignupComponent implements OnInit {
           password: this.signupForm.value.password,
         };
         await this.userService.addUser(request);
-        alert("başarılı");
+        this.route.navigate(["/login"]);
+        this.toastr.success(this.signupForm.value.email,'kayıt başarılı');
       } catch (error) {
         alert(error);
       }

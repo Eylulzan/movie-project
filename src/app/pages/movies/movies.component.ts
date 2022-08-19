@@ -1,7 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { delay } from "rxjs";
+import { ChangeDetectionStrategy,Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { delay,take } from "rxjs";
 import { Movie } from "../../models/movie.interface";
 import { MovieService } from "../../services/movie.service";
+import { ToastrService } from "ngx-toastr";
+import * as AllFavoriteActions from "../../store/actions/favorite-movie-actions";
 
 @Component({
   selector: "app-movies",
@@ -15,10 +18,18 @@ export class MoviesComponent implements OnInit {
   searchText: string = "";
   loading: boolean = true;
   currentPage: number = 1;
-  constructor(private movieService: MovieService) {}
+  favoriteMovies: Movie[] = [];
+  movie: any;
+  constructor(private toastr:ToastrService,private movieService: MovieService,private store: Store<any>) {}
 
   ngOnInit(): void {
     this.getTopRatedMovies(1);
+    this.store
+    .select("favoriteReducer")
+    .pipe(take(1))
+    .subscribe((state) => {
+      this.favoriteMovies = state;
+    });
   }
 
   getTopRatedMovies(page: number) {
@@ -48,5 +59,13 @@ export class MoviesComponent implements OnInit {
       this.searchResults = data.results;
       this.loading = false;
     });
+  }
+  addToFavorite(event: any) {
+    this.store.dispatch(new AllFavoriteActions.AddToFavorite(event));
+    this.toastr.success(this.movie.title  ,'favorilere eklendi');
+  }
+
+  removeFromFavorite(event: any) {
+    this.store.dispatch(new AllFavoriteActions.RemoveFromFavorite(event));
   }
 }

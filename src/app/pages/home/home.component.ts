@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { ToastrService } from "ngx-toastr";
 import { delay, take } from "rxjs";
 import { Movie } from "../../models/movie.interface";
 import { MovieService } from "../../services/movie.service";
 import * as AllFavoriteActions from "../../store/actions/favorite-movie-actions";
+
 
 @Component({
   selector: "app-home",
@@ -15,7 +17,8 @@ export class HomeComponent implements OnInit {
   currentPage: number = 1;
   loading: boolean = true;
   favoriteMovies: Movie[] = [];
-  constructor(private movieService: MovieService, private store: Store<any>) {}
+  movie: any;
+  constructor(private toastr:ToastrService,private movieService: MovieService, private store: Store<any>) {}
 
   ngOnInit(): void {
     this.getPopularMovies();
@@ -30,6 +33,8 @@ export class HomeComponent implements OnInit {
   // RxJS Reaktif Programlama
   // Component Lifecycle (Component Yaşam Döngüsü)
 
+  // Toastr
+
   getPopularMovies() {
     this.movieService
       .getPopularMovies()
@@ -42,11 +47,10 @@ export class HomeComponent implements OnInit {
 
   addToFavorite(event: any) {
     this.store.dispatch(new AllFavoriteActions.AddToFavorite(event));
-    setTimeout(location.reload.bind(location), 1);
+    this.toastr.success(this.movie.title  ,'favorilere eklendi');
   }
 
   removeFromFavorite(event: any) {
     this.store.dispatch(new AllFavoriteActions.RemoveFromFavorite(event));
-    setTimeout(location.reload.bind(location), 1);
   }
 }

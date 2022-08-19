@@ -49,7 +49,8 @@
               }
       "
     >
-      <app-movie-card [movie]="movie"></app-movie-card>
+      <app-movie-card [movie]="movie" (addFavorite)="addToFavorite($event)"
+      (removeFavorite)="removeFromFavorite($event)"></app-movie-card>
     </div>
     <pagination-controls
       *ngIf="topRatedMovies.length > 0"

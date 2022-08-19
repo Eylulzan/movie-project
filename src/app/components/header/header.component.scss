@@ -1,3 +1,4 @@
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -14,10 +15,10 @@
 
 .b-example-divider {
   height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
+  background-color: rgb(255, 255, 255);
+  border: solid rgba(255, 255, 255, 0.15);
   border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  box-shadow: inset 0 .5em 1.5em rgba(255, 255, 255, 0.955), inset 0 .125em .5em rgba(255, 255, 255, 0.905);
 }
 
 .b-example-vr {
@@ -30,7 +31,11 @@
   vertical-align: -.125em;
   fill: currentColor;
 }
-
+.navbar{
+  font-size: x-large;
+ color: white;
+ font-weight: 600;
+}
 .nav-scroller {
   position: relative;
   z-index: 2;

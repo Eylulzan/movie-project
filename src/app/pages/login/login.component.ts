@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { filter } from "rxjs";
 import { User } from "../../models/user.interface";
 import { UserService } from "../../services/user.service";
@@ -13,10 +14,12 @@ import { UserService } from "../../services/user.service";
 export class LoginComponent implements OnInit {
   users: User[];
   loginForm: FormGroup;
+  movie: any;
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private route: Router
+    private route: Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -42,17 +45,18 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.value.password,
       };
 
-      let checkUserAuth: boolean =
+      let checkUserAuth =
         this.users.filter(
           (user) =>
             user.email === formUser.email && user.password === formUser.password
         ).length > 0
-          ? true
-          : false;
+          ? this.toastr.success(this.loginForm.value.email,'giriş başarılı'): false;
 
       if (checkUserAuth) {
         // Login olduktan sonra Anasayfaya dönme işlemini (navigate) setTimeout ile 2 saniye geciktir. O sürede ekranda pop-up çıksın (Giriş başarılı hoşgeldiniz vs.)
+       
         setTimeout(location.reload.bind(location), 1);
+       
         this.route.navigate(["/home"]);
         localStorage.setItem("user", JSON.stringify(formUser));
       } else {

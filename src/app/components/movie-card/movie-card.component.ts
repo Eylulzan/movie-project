@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { ToastrService } from "ngx-toastr";
+
 import { take } from "rxjs";
 import { Movie } from "../../models/movie.interface";
 
@@ -19,7 +21,7 @@ export class MovieCardComponent implements OnInit {
   removeFavorite: EventEmitter<Movie> = new EventEmitter<Movie>();
   isUserAuth: boolean = false;
   favoriteMovies: Movie[] = [];
-  constructor(private store: Store<any>) {
+  constructor(private toastr:ToastrService, private store: Store<any>) {
     this.isUserAuth = localStorage.getItem("user") ? true : false;
     // Ternary If
   }
@@ -35,10 +37,12 @@ export class MovieCardComponent implements OnInit {
 
   addMovieToFavorites() {
     this.addFavorite.emit(this.movie);
+    this.toastr.success(this.movie.title  ,'favorilere eklendi');
   }
 
   removeMovieFromFavorites() {
     this.removeFavorite.emit(this.movie);
+    this.toastr.warning(this.movie.title  ,'favorilerden çıkartıldı');
   }
 
   checkFavoriteExists(movie: Movie): boolean {
