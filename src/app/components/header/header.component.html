@@ -1,44 +1,32 @@
 <header
   class="d-flex flex-wrap align-items-center justify-content-center justify-content-around py-3 border-bottom bg-dark"
 >
-
   <div class="d-flex align-items-center col-md-3">
-  
     <i class="bi bi-camera-reels-fill bi-spin text-white fs-4"></i>
-  
-    
+
     <div class="mx-2 fw-bold fs-3">
-    <a href="/" class="text-light text-decoration-none"> EylülFilm </a>
+      <a href="/" class="text-light text-decoration-none"> EylülFilm </a>
+    </div>
   </div>
-  </div>
-  
-  <ul class="nav col-12 col-md-auto mb-2 justify-content-center "   >
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center">
     <li *ngFor="let path of paths">
       <app-header-link [name]="path.name" [path]="path.path"></app-header-link>
     </li>
   </ul>
 
-
   <div class="col-md-3 text-end text-light" *ngIf="!user; else userHeader">
-    <button
-      type="button"
-      class="btn btn-primary me-2"
-      routerLink="/login"
-    >
-      Login
+    <button type="button" class="btn btn-primary me-2" routerLink="/login">
+      Giriş Yap
     </button>
     <button type="button" class="btn btn-primary" routerLink="/signup">
-      Sign-up
+      Kayıt Ol
     </button>
   </div>
   <ng-template #userHeader>
-    <div class="col-md-3 text-end text-light ">
+    <div class="col-md-3 text-end text-light">
       <span class="me-2">Hoşgeldiniz, {{ user.email }}</span>
-      <button
-        type="button"
-        class="btn btn-sm btn-primary"
-        (click)="logout()"
-      >
+      <button type="button" class="btn btn-sm btn-primary" (click)="logout()">
         Çıkış yap
       </button>
     </div>
