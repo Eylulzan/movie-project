@@ -45,6 +45,15 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  pageChanged(event: any) {
+    this.currentPage = event;
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+   
+  }
   addToFavorite(event: any) {
     this.store.dispatch(new AllFavoriteActions.AddToFavorite(event));
     this.toastr.success(this.movie.title  ,'favorilere eklendi');
