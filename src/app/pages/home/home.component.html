@@ -17,8 +17,9 @@
       ></app-movie-card>
     </div>
     <pagination-controls
+    *ngIf="popularMovies.length > 0"
       class="p-0 m-0"
-      (pageChange)="currentPage = $event"
+      (pageChange)="pageChanged($event)"
       previousLabel="Geri"
       nextLabel="İleri"
     ></pagination-controls>
